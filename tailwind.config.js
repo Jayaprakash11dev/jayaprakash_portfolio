@@ -1,50 +1,45 @@
-module.exports = {
-  mode: "jit",
+import defaultTheme from "tailwindcss/defaultTheme";
+
+/** @type {import('tailwindcss').Config} */
+export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   darkMode: "class",
   theme: {
-    fontFamily: {
-      default: ["Poppins", "sans-serif"],
-      display: ["Krona One", "sans-serif"],
+    container: {
+      center: true,
+      padding: { DEFAULT: "1.25rem", md: "2rem" },
+      screens: { "2xl": "1152px" },
     },
     extend: {
+      fontFamily: {
+        sans: ["Inter", ...defaultTheme.fontFamily.sans],
+        mono: ["JetBrains Mono", ...defaultTheme.fontFamily.mono],
+      },
       colors: {
-        primary: {
-          DEFAULT: "#222831",
-          50: "#E7EAEE",
-          100: "#CCD2DB",
-          200: "#9CA8BA",
-          300: "#687B97",
-          400: "#455163",
-          500: "#1B2027",
-          600: "#15191E",
-          700: "#0F1115",
-          800: "#060709",
+        ink: {
+          DEFAULT: "#0B0F17",
+          surface: "#111827",
+          raised: "#161F2E",
         },
-        secondary: {
-          DEFAULT: "#663EFF",
-          50: "#EFEBFF",
-          100: "#DED6FF",
-          200: "#C2B3FF",
-          300: "#A18AFF",
-          400: "#8566FF",
-          500: "#3300FF",
-          600: "#2600BD",
-          700: "#1A0080",
-          800: "#0C003D",
-        },
-        neutral: {
-          DEFAULT: "#EEEEEE",
+        accent: {
+          DEFAULT: "#2DD4BF",
+          50: "#F0FDFA",
+          100: "#CCFBF1",
+          200: "#99F6E4",
+          300: "#5EEAD4",
+          400: "#2DD4BF",
+          500: "#14B8A6",
+          600: "#0D9488",
+          700: "#0F766E",
+          800: "#115E59",
+          900: "#134E4A",
         },
       },
-    },
-    container: {
-      center: true, // serves as margin-inline: auto;
-      padding: {
-        DEFAULT: "1rem",
+      backgroundImage: {
+        grid: "linear-gradient(to right, rgb(148 163 184 / 0.07) 1px, transparent 1px), linear-gradient(to bottom, rgb(148 163 184 / 0.07) 1px, transparent 1px)",
       },
-      screens: {
-        "2xl": "1440px",
+      backgroundSize: {
+        grid: "40px 40px",
       },
     },
   },

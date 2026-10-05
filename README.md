@@ -1,36 +1,40 @@
-# Vite react & Tailwind portfolio. 
+# Jayaprakash M — Portfolio
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/96df2662-043f-4c04-b08d-2dce8c5e7eab/deploy-status)](https://app.netlify.com/sites/felixdev/deploys)
+Personal portfolio of **Jayaprakash M**, Full Stack Developer (React, Next.js, Node.js, NestJS, PostgreSQL, AWS).
 
-## Steps to run: 
+Live: https://jayaprakash-portfolio.vercel.app
 
-### 1. `npm install`
+## Stack
+- [React 18](https://react.dev/) + [Vite 6](https://vitejs.dev/)
+- [Tailwind CSS 3](https://tailwindcss.com/) (dark-first, class-based theme toggle)
+- [Framer Motion](https://www.framer.com/motion/) for scroll animations (respects reduced motion)
+- [EmailJS](https://www.emailjs.com/) for the contact form
+- Deployed on [Vercel](https://vercel.com/)
 
-Inside the project on the package.json, you can run some scripts that you can run. 
+## Getting started
+```bash
+npm install
+npm run dev       # http://localhost:5173
+npm run build     # production build in dist/
+npm run preview   # serve the production build
+```
 
-### 2. `npm run dev`
+## Updating content
+All text (profile, experience, projects, skills, education) lives in
+[`src/data/portfolio.js`](src/data/portfolio.js). Edit that file; the components don't need to change.
 
-Runs the app in development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Resume download: replace `public/Jayaprakash-M.pdf`.
+- Social share image: `public/og-image.png` (1200×630).
+- Project screenshots: `src/assets/projects/*.webp`, registered in `src/constants/image.js`.
 
-The page will automatically reload if you make changes to the code.<br>
+## Contact form
+Copy `.env.example` to `.env` and fill in your EmailJS credentials (also add them as
+environment variables in the Vercel project settings):
 
----
-### `npm run build`
+```
+VITE_EMAIL_JS_SERVICE_ID=
+VITE_EMAIL_JS_TEMPLATE_ID=
+VITE_EMAIL_JS_PUBLIC_KEY=
+```
 
-Builds the app for production to the `dist` folder.<br>
----
-### EmailJS:
-- Add your credentials in the `.env.example` in order to use the form with emailJS
-
-### Technology Used:
-- [Tailwind](https://tailwindcss.com/)
-- [Vite](https://vitejs.dev/)
-- [React](https://reactjs.org/)
-- [EmailJS](https://www.emailjs.com/)
-- [HeadlessUI](https://headlessui.com/)
-- [Heroicons](https://heroicons.com/)
-
-### Animations:
-- [Framer Motion](https://www.framer.com/motion/)
-# jayaprakash_portfolio
+The template receives `user_name`, `user_email` and `message`.

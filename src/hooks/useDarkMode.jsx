@@ -1,43 +1,31 @@
 import { useEffect, useState } from "react";
 
-const useLocalStorage = (key, initialValue) => {
-  const [storedValue, setStoredValue] = useState(() => {
-    try {
-      const item = window.localStorage.getItem(key);
-      return item ? JSON.parse(item) : initialValue;
-    } catch (error) {
-      console.log(error);
-      return initialValue;
-    }
-  });
+const STORAGE_KEY = "dark-theme";
 
-  const setValue = (value) => {
-    try {
-      const valueToStore =
-        value instanceof Function ? value(storedValue) : value;
-
-      setStoredValue(valueToStore);
-
-      window.localStorage.setItem(key, JSON.stringify(valueToStore));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  return [storedValue, setValue];
+const readStored = () => {
+  try {
+    const item = window.localStorage.getItem(STORAGE_KEY);
+    return item === null ? true : JSON.parse(item);
+  } catch {
+    return true;
+  }
 };
 
+// Dark is the default. The class is applied to <html> so Tailwind's
+// `dark:` variants and the page background switch together.
 const useDarkMode = () => {
-  const [enabledState, setEnabledState] = useLocalStorage("dark-theme", true);
-  const isEnabled = typeof enabledState === "undefined" ? true : enabledState;
+  const [isDark, setIsDark] = useState(readStored);
 
   useEffect(() => {
-    const className = "dark";
-    const bodyClass = window.document.body.classList;
+    document.documentElement.classList.toggle("dark", isDark);
+    try {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(isDark));
+    } catch {
+      // Storage unavailable (private mode); theme still works for this visit.
+    }
+  }, [isDark]);
 
-    isEnabled ? bodyClass.add(className) : bodyClass.remove(className);
-  }, [isEnabled]);
-
-  return [enabledState, setEnabledState];
+  return [isDark, setIsDark];
 };
 
 export default useDarkMode;

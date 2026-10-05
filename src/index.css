@@ -4,69 +4,43 @@
 
 @layer base {
   html {
-    @apply scroll-smooth;
+    @apply scroll-smooth antialiased;
+    scroll-padding-top: 5rem;
   }
 
   body {
-    @apply font-default;
+    @apply bg-white font-sans text-slate-700 dark:bg-ink dark:text-slate-300;
   }
 
-  body * {
-    @apply transition-colors duration-300 ease-in-out;
-  }
-}
-
-@layer components {
-  .hero__heading {
-    @apply text-5xl text-primary font-display relative sm:text-7xl md:text-8xl dark:text-white;
+  ::selection {
+    @apply bg-accent-300/40 text-slate-900 dark:bg-accent-400/30 dark:text-white;
   }
 
-  .hero__heading::before {
-    @apply text-xs text-primary-400 font-medium font-default absolute -top-6 -left-2 sm:text-base dark:text-opacity-80 dark:text-white;
-    content: "I AM";
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent-500 ring-offset-2 ring-offset-white dark:ring-accent-400 dark:ring-offset-ink;
   }
 
-  .hero__heading::after {
-    @apply text-xs text-primary-400 font-medium font-default absolute -bottom-6 -right-10 sm:text-base dark:text-opacity-80 dark:text-white;
-    content: "FULL STACK DEVELOPER";
-  }
-}
-
-.react-tabs__tab--selected {
-  @apply bg-secondary-400 dark:bg-secondary;
-}
-
-@layer components {
-  .modal {
-    z-index: 100;
-    box-shadow: 0px 2px 24px rgba(0, 0, 0, 0.12),
-      0px 1px 4px rgba(0, 0, 0, 0.04);
-  }
-
-  .modal-overlay {
-    @apply fixed top-0 bottom-0 right-0 left-0;
-    z-index: 100;
-    background-color: rgba(0, 0, 0, 0.61);
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 }
 
 @layer components {
-  .featured-alt:nth-child(odd) .featured-no {
-    @apply -left-20;
+  .card {
+    @apply rounded-2xl border border-slate-200 bg-slate-50/60 dark:border-slate-800 dark:bg-ink-surface/60;
   }
 
-  .featured-alt:nth-child(even) .featured-no {
-    @apply -right-20;
-    z-index: 1;
-  }
-}
-
-@layer components {
-  .loading-wrapper {
-    @apply w-full h-full fixed top-0 left-0 bg-primary grid items-center transition-all delay-300;
+  .eyebrow {
+    @apply font-mono text-sm text-accent-600 dark:text-accent-400;
   }
 
-  .loading {
-    @apply animate-spin border-8 rounded-full border-solid border-neutral w-[140px] h-[140px] transition-all delay-300;
+  .heading {
+    @apply text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white;
+  }
+
+  .input {
+    @apply w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 transition-colors focus:border-accent-500 focus:outline-none focus:ring-1 focus:ring-accent-500 dark:border-slate-700 dark:bg-ink dark:text-white dark:placeholder:text-slate-500;
   }
 }
